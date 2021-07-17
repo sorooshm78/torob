@@ -2,8 +2,8 @@ from lxml import html
 import requests
 from datetime import datetime
 
-receptor = '09396351801'
-key = '437068637A414941394872763436396B67527348452F4845545075766F6D366F7544734D53706C674A66593D'
+receptor = ''
+key = ''
 
 
 def send_sms(message):
