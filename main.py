@@ -1,19 +1,21 @@
 from lxml import html
 import requests
 from datetime import datetime
-import info
+
+receptor = '09396351801'
+key = '437068637A414941394872763436396B67527348452F4845545075766F6D366F7544734D53706C674A66593D'
+
 
 def send_sms(message):
-	print('Sending ...')
+	print('Sending SMS...')
 
-	url = 'https://api.kavenegar.com/v1/%s/sms/send.json' % info.key
-	Data = {'receptor' : info.receptor,'message':message}
+	url = 'https://api.kavenegar.com/v1/%s/sms/send.json' % key
+	Data = {'receptor' : receptor,'message':message}
 
 	r = requests.post(url, data = Data)
 	if r.ok:
-		print("send")	
+		print("Send")	
 
-"""
 dic = {
 "۰":"0",
 "۱":"1",
@@ -68,9 +70,8 @@ for url, buy in phones.items():
 		name = del_word_fa(data[1])
 		sell = conver_number(data[3])
 		if sell <= buy:
-			print(name + " sell " + str(sell) + " buy " + str(buy))
+			send_sms(name + ' sell ' + str(sell) + ' buy ' + str(buy) +'  At  '+ 					datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 		else:
 			print('!!! Not Buy Now ' + name + " sell: " + str(sell) + '  At  ' + 					datetime.now().strftime('%Y-%m-%d %H:%M:%S'))   
 	except:
 		print('Not Internet At ' + datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-"""
